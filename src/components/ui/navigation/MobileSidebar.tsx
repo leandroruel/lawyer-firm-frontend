@@ -16,13 +16,22 @@ import {
   RiListCheck,
   RiMenuLine,
   RiSettings5Line,
+  RiFlowChart,
+  RiTaskLine,
+  RiCalendarLine,
+  RiMoneyDollarCircleLine,
+  RiUserLine,
 } from "@remixicon/react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 const navigation = [
   { name: "Overview", href: siteConfig.baseLinks.overview, icon: RiHome2Line },
-  { name: "Details", href: siteConfig.baseLinks.details, icon: RiListCheck },
+  { name: "Processos", href: "/processos", icon: RiFlowChart },
+  { name: "Tarefas", href: "/tarefas", icon: RiTaskLine },
+  { name: "Calendário", href: "/calendario", icon: RiCalendarLine },
+  { name: "Cobrança", href: "/cobranca", icon: RiMoneyDollarCircleLine },
+  { name: "Perfil", href: "/perfil", icon: RiUserLine },
   {
     name: "Settings",
     href: siteConfig.baseLinks.settings.general,

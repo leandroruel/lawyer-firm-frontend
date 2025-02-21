@@ -6,6 +6,11 @@ export const siteConfig = {
     home: "/",
     overview: "/overview",
     details: "/details",
+    processos: "/processos",
+    tarefas: "/tarefas",
+    calendario: "/calendario", 
+    cobranca: "/cobranca",
+    perfil: "/perfil",
     settings: {
       general: "/settings/general",
       billing: "/settings/billing",
