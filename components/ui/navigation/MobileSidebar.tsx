@@ -13,7 +13,6 @@ import { cx, focusRing } from "@/lib/utils"
 import {
   RiHome2Line,
   RiLinkM,
-  RiListCheck,
   RiMenuLine,
   RiSettings5Line,
   RiFlowChart,

@@ -4,7 +4,6 @@ import { cx, focusRing } from "@/lib/utils"
 import {
   RiHome2Line,
   RiLinkM,
-  RiListCheck,
   RiSettings5Line,
   RiFlowChart,
   RiTaskLine,
@@ -23,11 +22,11 @@ import { UserProfileDesktop, UserProfileMobile } from "./UserProfile"
 
 const navigation = [
   { name: "Overview", href: siteConfig.baseLinks.overview, icon: RiHome2Line },
-  { name: "Processos", href: "/processos", icon: RiFlowChart },
-  { name: "Tarefas", href: "/tarefas", icon: RiTaskLine },
-  { name: "Calendário", href: "/calendario", icon: RiCalendarLine },
-  { name: "Cobrança", href: "/cobranca", icon: RiMoneyDollarCircleLine },
-  { name: "Perfil", href: "/perfil", icon: RiUserLine },
+  { name: "Processos", href: "/dashboard/processos", icon: RiFlowChart },
+  { name: "Tarefas", href: "/dashboard/tarefas", icon: RiTaskLine },
+  { name: "Calendário", href: "/dashboard/calendario", icon: RiCalendarLine },
+  { name: "Cobrança", href: "/dashboard/cobranca", icon: RiMoneyDollarCircleLine },
+  { name: "Perfil", href: "/dashboard/perfil", icon: RiUserLine },
   {
     name: "Settings",
     href: siteConfig.baseLinks.settings.general,

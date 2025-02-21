@@ -25,6 +25,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table"
 
+
 interface DataTableProps<TData> {
   columns: ColumnDef<TData>[]
   data: TData[]

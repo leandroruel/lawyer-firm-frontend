@@ -1,7 +1,7 @@
 import { Button } from "@/components/Button"
 import { ArrowAnimated } from "@/components/ui/icons/ArrowAnimated"
 import Link from "next/link"
-import { DatabaseLogo } from "../../public/DatabaseLogo"
+import { DatabaseLogo } from "@/public/DatabaseLogo"
 import { siteConfig } from "./siteConfig"
 
 export default function NotFound() {
@@ -17,7 +17,7 @@ export default function NotFound() {
         Page not found
       </h1>
       <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-        Sorry, we couldn’t find the page you’re looking for.
+        Sorry, we couldn't find the page you're looking for.
       </p>
       <Button asChild className="group mt-8" variant="light">
         <Link href={siteConfig.baseLinks.home}>

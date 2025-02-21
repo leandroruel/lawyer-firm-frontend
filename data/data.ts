@@ -575,3 +575,30 @@ export const usage: Usage[] = [
     lastEdited: "01/01/2022 16:18",
   },
 ]
+
+export const mockProcesses: any[] = [
+  {
+    id: '1',
+    folder: '2024/001',
+    title: 'Processo Exemplo 1',
+    status: 'active',
+    clients: [
+      {
+        id: 'c1',
+        name: 'João Silva',
+        qualification: 'Requerente'
+      }
+    ],
+    involved: [
+      {
+        id: 'i1',
+        name: 'Maria Santos',
+        qualification: 'Requerida'
+      }
+    ],
+    tags: ['urgente', 'civil'],
+    createdAt: '2024-01-01T10:00:00Z',
+    updatedAt: '2024-01-10T15:30:00Z'
+  },
+  // ... outros processos
+]
