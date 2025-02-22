@@ -6,7 +6,6 @@ import { siteConfig } from "./siteConfig"
 
 const inter = Inter({
   subsets: ["latin"],
-  display: "swap",
   variable: "--font-inter",
 })
 
@@ -41,9 +40,14 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pt-BR" className={inter.variable}>
-      <body>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+    <html lang="pt-BR" className={inter.variable} suppressHydrationWarning>
+      <body suppressHydrationWarning>
+        <ThemeProvider 
+          attribute="class" 
+          defaultTheme="system" 
+          enableSystem
+          disableTransitionOnChange
+        >
           {children}
         </ThemeProvider>
       </body>

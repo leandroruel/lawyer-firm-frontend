@@ -22,6 +22,8 @@ import {
 } from "@remixicon/react"
 import { useTheme } from "next-themes"
 import * as React from "react"
+import { useAuthStore } from "@/stores/useAuthStore"
+import { useRouter } from "next/navigation"
 
 export type DropdownUserProfileProps = {
   children: React.ReactNode
@@ -32,8 +34,25 @@ export function DropdownUserProfile({
   children,
   align = "start",
 }: DropdownUserProfileProps) {
+  const router = useRouter()
   const [mounted, setMounted] = React.useState(false)
   const { theme, setTheme } = useTheme()
+  const { user } = useAuthStore()
+
+  const handleSignOut = async () => {
+    try {
+      const response = await fetch('/api/auth/signout', {
+        method: 'POST',
+      })
+
+      if (response.ok) {
+        router.push('/login')
+      }
+    } catch (error) {
+      console.error('Erro ao fazer logout:', error)
+    }
+  }
+
   React.useEffect(() => {
     setMounted(true)
   }, [])
@@ -46,7 +65,7 @@ export function DropdownUserProfile({
       <DropdownMenu>
         <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
         <DropdownMenuContent align={align}>
-          <DropdownMenuLabel>emma.stone@acme.com</DropdownMenuLabel>
+          <DropdownMenuLabel>{user?.email}</DropdownMenuLabel>
           <DropdownMenuGroup>
             <DropdownMenuSubMenu>
               <DropdownMenuSubMenuTrigger>Theme</DropdownMenuSubMenuTrigger>
@@ -117,7 +136,9 @@ export function DropdownUserProfile({
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
-            <DropdownMenuItem>Sign out</DropdownMenuItem>
+            <DropdownMenuItem onSelect={handleSignOut}>
+              Sign out
+            </DropdownMenuItem>
           </DropdownMenuGroup>
         </DropdownMenuContent>
       </DropdownMenu>

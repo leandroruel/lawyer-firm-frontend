@@ -31,18 +31,18 @@ export default function Login() {
       })
 
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}))
-        throw new Error(errorData.message || "Credenciais inválidas")
+        const errorData = await response.json()
+        throw new Error(errorData.error)
       }
 
       const data = await response.json()
       
       if (data.token) {
-        router.push("/overview")
+        router.push("/dashboard")
       }
     } catch (err) {
       console.error(err)
-      setError("Erro ao fazer login. Por favor, verifique suas credenciais.")
+      setError(err instanceof Error ? err.message : "Erro ao fazer login. Por favor, verifique suas credenciais.")
     } finally {
       setIsLoading(false)
     }
