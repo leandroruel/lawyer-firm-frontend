@@ -25,13 +25,16 @@ import {
   useReactTable,
 } from "@tanstack/react-table"
 
+import { FilterConfig } from "./DataTableFilterbar"
 
 interface DataTableProps<TData> {
   columns: ColumnDef<TData>[]
   data: TData[]
+  filters?: FilterConfig[]
+  searchColumn?: string
 }
 
-export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
+export function DataTable<TData>({ columns, data, filters, searchColumn }: DataTableProps<TData>) {
   const pageSize = 20
   const [rowSelection, setRowSelection] = React.useState({})
   const table = useReactTable({
@@ -57,7 +60,7 @@ export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
   return (
     <>
       <div className="space-y-3">
-        <Filterbar table={table} />
+        <Filterbar table={table} filters={filters} searchColumn={searchColumn} />
         <div className="relative overflow-hidden overflow-x-auto">
           <Table>
             <TableHead>

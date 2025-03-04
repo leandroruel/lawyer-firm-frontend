@@ -17,13 +17,7 @@ export const columns = [
     id: "select",
     header: ({ table }) => (
       <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected()
-            ? true
-            : table.getIsSomeRowsSelected()
-              ? "indeterminate"
-              : false
-        }
+        checked={table.getIsSomePageRowsSelected() ? "indeterminate" : table.getIsAllPageRowsSelected()}
         onCheckedChange={() => table.toggleAllPageRowsSelected()}
         className="translate-y-0.5"
         aria-label="Select all"
@@ -198,3 +192,60 @@ export const columns = [
     cell: ({ row }) => <DataTableRowActions row={row} />,
   }),
 ] as ColumnDef<Usage>[]
+
+export type Process = {
+  _id: string
+  folder: string
+  title: string
+  tags: string[]
+  instance: string
+  processNumber: string
+  responsible: string
+}
+
+// Função genérica para criar colunas base
+export function createBaseColumns<T>(): ColumnDef<T>[] {
+  return [
+    {
+      id: "select",
+      header: ({ table }) => (
+        <Checkbox
+          checked={table.getIsAllPageRowsSelected() ? "indeterminate" : table.getIsAllPageRowsSelected()}
+          onCheckedChange={() => table.toggleAllPageRowsSelected()}
+          aria-label="Select all"
+        />
+      ),
+      cell: ({ row }) => (
+        <Checkbox
+          checked={row.getIsSelected()}
+          onCheckedChange={() => row.toggleSelected()}
+          aria-label="Select row"
+        />
+      ),
+      enableSorting: false,
+      enableHiding: false,
+    }
+  ]
+}
+
+// Funções auxiliares para formatação de células
+export const cellFormatters = {
+  badge: (value: string, variant?: BadgeProps["variant"]) => (
+    <Badge variant={variant}>{value}</Badge>
+  ),
+  
+  tags: (tags: string[]) => (
+    <div className="flex gap-1">
+      {tags.map((tag) => (
+        <span
+          key={tag}
+          className="inline-flex items-center rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-800 dark:bg-gray-800 dark:text-gray-200"
+        >
+          {tag}
+        </span>
+      ))}
+    </div>
+  ),
+
+  currency: (value: number) => formatters.currency(value),
+}

@@ -32,7 +32,7 @@ export type ConditionFilter = {
   value: [number | string, number | string]
 }
 
-type FilterType = "select" | "checkbox" | "number"
+export type FilterType = 'select' | 'checkbox' | 'number'
 
 interface DataTableFilterProps<TData, TValue> {
   column: Column<TData, TValue> | undefined

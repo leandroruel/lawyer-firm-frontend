@@ -230,11 +230,6 @@ function ListItem({
         </div>
         {closestEdge && <DropIndicator edge={closestEdge} gap="1px" />}
       </div>
-      {draggableState.type === "preview" &&
-        ReactDOM.createPortal(
-          <div>{item.label}</div>,
-          draggableState.container,
-        )}
     </React.Fragment>
   )
 }
