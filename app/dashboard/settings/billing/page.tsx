@@ -193,7 +193,7 @@ export default function Billing() {
                 </div>
                 <div
                   className={cx(
-                    "transform-gpu transition-all ease-[cubic-bezier(0.16,1,0.3,1.03)] will-change-transform",
+                    "transform-gpu transition-all ease-[custom-bounce] will-change-transform",
                     isSpendMgmtEnabled ? "h-52 md:h-32" : "h-0",
                   )}
                   style={{
