@@ -11,20 +11,20 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://yoururl.com"),
+  metadataBase: new URL("https://lexdomus.com.br"),
   title: siteConfig.name,
   description: siteConfig.description,
   keywords: [],
   authors: [
     {
-      name: "yourname",
-      url: "",
+      name: "LexDomus",
+      url: "https://lexdomus.com.br",
     },
   ],
-  creator: "yourname",
+  creator: "LexDomus",
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "pt_BR",
     url: siteConfig.url,
     title: siteConfig.name,
     description: siteConfig.description,
