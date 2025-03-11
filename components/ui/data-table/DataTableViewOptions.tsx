@@ -1,11 +1,9 @@
 "use client"
 
 import React from "react"
-
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/Popover"
 import { Column, Table } from "@tanstack/react-table"
 
-import ReactDOM from "react-dom"
 import invariant from "tiny-invariant"
 
 import { Button } from "@/components/Button"
