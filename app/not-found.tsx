@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { Button } from "@/components/Button"
 import { ArrowAnimated } from "@/components/ui/icons/ArrowAnimated"
 import Link from "next/link"
