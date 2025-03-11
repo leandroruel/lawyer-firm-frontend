@@ -17,7 +17,7 @@ COPY . .
 RUN yarn build
 
 # Expõe a porta usada pelo Next.js
-EXPOSE 3000
+EXPOSE 3001
 
 # Comando para rodar a aplicação Next.js no modo de produção
 CMD ["yarn", "start"]
