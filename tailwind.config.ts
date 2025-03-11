@@ -58,6 +58,9 @@ const config: Config = {
         dialogContentShow:
           "dialogContentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
       },
+      colors: {
+        border: "hsl(var(--border))",
+      }
     },
   },
   plugins: [require("@tailwindcss/forms")],
