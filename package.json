@@ -9,6 +9,9 @@
     "lint": "next lint",
     "generate": "node src/data/generateData.js"
   },
+  "engines": {
+    "node": "22.x"
+  },
   "dependencies": {
     "@atlaskit/pragmatic-drag-and-drop": "^1.4.0",
     "@atlaskit/pragmatic-drag-and-drop-flourish": "^1.1.3",
