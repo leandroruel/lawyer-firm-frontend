@@ -8,6 +8,8 @@ import { DatabaseLogo } from "@/public/DatabaseLogo"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import { toast } from "sonner"
+import { RiLoaderLine } from "@remixicon/react"
 
 export default function Login() {
   const [email, setEmail] = useState("")
@@ -32,7 +34,7 @@ export default function Login() {
 
       if (!response.ok) {
         const errorData = await response.json()
-        throw new Error(errorData.error)
+        throw new Error(errorData.message || "Credenciais inválidas")
       }
 
       const data = await response.json()
@@ -42,7 +44,12 @@ export default function Login() {
       }
     } catch (err) {
       console.error(err)
-      setError(err instanceof Error ? err.message : "Erro ao fazer login. Por favor, verifique suas credenciais.")
+      const errorMessage = err instanceof Error ? err.message : "Erro ao fazer login"
+      
+      toast.error("Falha no login", {
+        description: errorMessage
+      })
+      setError(errorMessage)
     } finally {
       setIsLoading(false)
     }
@@ -77,6 +84,7 @@ export default function Login() {
                   onChange={(e) => setEmail(e.target.value)}
                   className="block w-full"
                   placeholder="seu@email.com"
+                  disabled={isLoading}
                 />
               </div>
             </div>
@@ -96,6 +104,7 @@ export default function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                   className="block w-full"
                   placeholder="••••••••"
+                  disabled={isLoading}
                 />
               </div>
             </div>
@@ -111,7 +120,14 @@ export default function Login() {
                 className="w-full"
                 disabled={isLoading}
               >
-                {isLoading ? "Entrando..." : "Entrar"}
+                {isLoading ? (
+                  <>
+                    <RiLoaderLine className="mr-2 h-4 w-4 animate-spin" />
+                    Entrando...
+                  </>
+                ) : (
+                  "Entrar"
+                )}
               </Button>
             </div>
           </form>

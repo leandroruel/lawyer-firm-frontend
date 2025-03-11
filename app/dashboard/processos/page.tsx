@@ -9,6 +9,7 @@ import { createBaseColumns, cellFormatters } from "@/components/ui/data-table/co
 import { ColumnDef } from "@tanstack/react-table"
 import { RiMoreFill, RiPencilLine, RiDeleteBinLine } from "@remixicon/react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/Dropdown"
+import { useRouter } from "next/navigation"
 
 const processFilters: FilterConfig[] = [
   {
@@ -105,6 +106,7 @@ export default function ProcessosPage() {
   const [processes, setProcesses] = useState<Process[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState("")
+  const router = useRouter()
 
   useEffect(() => {
     const fetchProcesses = async () => {
@@ -146,7 +148,7 @@ export default function ProcessosPage() {
         </h1>
         <Button 
           variant="primary" 
-          onClick={() => console.log('Adicionar novo processo')}
+          onClick={() => router.push('/dashboard/processos/cadastrar')}
         >
           Cadastrar Novo Processo
         </Button>
