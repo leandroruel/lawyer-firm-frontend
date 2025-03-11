@@ -60,6 +60,14 @@ const config: Config = {
       },
       colors: {
         border: "hsl(var(--border))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: "hsl(var(--primary))",
+        secondary: "hsl(var(--secondary))",
+        destructive: "hsl(var(--destructive))",
+        muted: "hsl(var(--muted))",
+        mutedForeground: "hsl(var(--muted-foreground))",
+        accent: "hsl(var(--accent))",
       }
     },
   },
