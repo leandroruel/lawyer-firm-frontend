@@ -10,6 +10,8 @@ import { Badge } from "@/components/Badge"
 import { RiAddLine, RiCloseLine } from "@remixicon/react"
 import { useAuthStore } from "@/stores/useAuthStore"
 import { toast } from "sonner"
+import { MultiSelect, Option } from "@/components/ui/multi-select"
+import { PROCESS_TAGS } from "../constants"
 
 // Esquema de validação com Zod
 const processSchema = z.object({
@@ -177,6 +179,14 @@ export default function CadastrarProcessoPage() {
         [name]: value,
       })
     }
+  }
+
+  // Função para lidar com mudança nas tags
+  const handleTagsChange = (selectedTags: Option[]) => {
+    setFormData({
+      ...formData,
+      tags: selectedTags.map(tag => tag.value),
+    })
   }
 
   // Função para enviar o formulário
@@ -357,40 +367,19 @@ export default function CadastrarProcessoPage() {
           </div>
         </div>
 
-        {/* Etiquetas */}
+        {/* Etiquetas com MultiSelect */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Etiquetas</label>
-          <div className="flex flex-wrap gap-2 mb-2">
-            {formData.tags.map((tag) => (
-              <Badge key={tag} className="flex items-center gap-1">
-                {tag}
-                <button
-                  type="button"
-                  onClick={() => removeTag(tag)}
-                  className="ml-1 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-                >
-                  <RiCloseLine className="h-3 w-3" />
-                </button>
-              </Badge>
-            ))}
-          </div>
-          <div className="flex gap-2">
-            <Input
-              value={newTag}
-              onChange={(e) => setNewTag(e.target.value)}
-              placeholder="Nova etiqueta"
-              className="flex-1"
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  e.preventDefault()
-                  addTag()
-                }
-              }}
-            />
-            <Button type="button" onClick={addTag} variant="secondary">
-              Adicionar
-            </Button>
-          </div>
+          <label htmlFor="tags" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            Etiquetas
+          </label>
+          <MultiSelect
+            options={PROCESS_TAGS}
+            value={PROCESS_TAGS.filter(tag => formData.tags.includes(tag.value))}
+            onChange={handleTagsChange}
+            placeholder="Selecione as etiquetas"
+            noOptionsMessage="Nenhuma etiqueta encontrada"
+          />
+          
           {errors.tags && <p className="mt-1 text-sm text-red-600">{errors.tags}</p>}
         </div>
 

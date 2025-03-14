@@ -104,7 +104,6 @@ function ProcessActions({ process }: { process: Process }) {
 
 export default function ProcessosPage() {
   const [processes, setProcesses] = useState<Process[]>([])
-  const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState("")
   const router = useRouter()
 
@@ -122,17 +121,11 @@ export default function ProcessosPage() {
       } catch (err) {
         setError('Erro ao carregar processos')
         console.error(err)
-      } finally {
-        setIsLoading(false)
       }
-    }
+      }
 
     fetchProcesses()
   }, [])
-
-  if (isLoading) {
-    return <div>Carregando...</div>
-  }
 
   if (error) {
     return <div>Erro: {error}</div>

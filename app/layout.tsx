@@ -5,6 +5,7 @@ import "./globals.css"
 import { siteConfig } from "./siteConfig"
 import { Toaster } from "@/components/ui/sonner"
 import { GoogleAnalytics } from '@next/third-parties/google'
+import LoadingBar from "@/components/ui/loading-bar"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -44,12 +45,13 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={inter.variable} suppressHydrationWarning>
       <body suppressHydrationWarning>
+        <LoadingBar />
         <ThemeProvider 
           attribute="class" 
           defaultTheme="system" 
           enableSystem
           disableTransitionOnChange
-        >
+        >        
           {children}
         </ThemeProvider>
         <Toaster />

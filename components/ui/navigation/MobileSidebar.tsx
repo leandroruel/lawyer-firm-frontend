@@ -26,9 +26,9 @@ import { usePathname } from "next/navigation"
 
 const navigation = [
   { name: "Overview", href: siteConfig.baseLinks.overview, icon: RiHome2Line },
-  { name: "Processos", href: "/processos", icon: RiFlowChart },
-  { name: "Tarefas", href: "/tarefas", icon: RiTaskLine },
-  { name: "Calendário", href: "/calendario", icon: RiCalendarLine },
+  { name: "Processos", href: "/dashboard/processos", icon: RiFlowChart },
+  { name: "Tarefas", href: "/dashboard/tarefas", icon: RiTaskLine },
+  { name: "Calendário", href: "/dashboard/calendario", icon: RiCalendarLine },
   { name: "Cobrança", href: "/cobranca", icon: RiMoneyDollarCircleLine },
   { name: "Perfil", href: "/perfil", icon: RiUserLine },
   {
