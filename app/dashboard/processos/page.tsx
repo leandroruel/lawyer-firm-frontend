@@ -71,6 +71,8 @@ function createProcessColumns(): ColumnDef<Process>[] {
 
 // Componente separado para as ações
 function ProcessActions({ process }: { process: Process }) {
+  const router = useRouter()
+  
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -83,6 +85,13 @@ function ProcessActions({ process }: { process: Process }) {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
+        <DropdownMenuItem
+          onClick={() => router.push(`/dashboard/processos/${process._id}`)}
+          className="flex items-center"
+        >
+          <RiPencilLine className="mr-2 h-4 w-4" />
+          Visualizar
+        </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => console.log('Editar', process._id)}
           className="flex items-center"

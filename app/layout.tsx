@@ -6,6 +6,7 @@ import { siteConfig } from "./siteConfig"
 import { Toaster } from "@/components/ui/sonner"
 import { GoogleAnalytics } from '@next/third-parties/google'
 import LoadingBar from "@/components/ui/loading-bar"
+import { ReactScan } from "@/app/debug/ReactScan"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -45,6 +46,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={inter.variable} suppressHydrationWarning>
       <body suppressHydrationWarning>
+        <ReactScan />
         <LoadingBar />
         <ThemeProvider 
           attribute="class" 
