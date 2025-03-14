@@ -6,7 +6,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { z } from "zod"
-import { Badge } from "@/components/Badge"
 import { RiAddLine, RiCloseLine } from "@remixicon/react"
 import { useAuthStore } from "@/stores/useAuthStore"
 import { toast } from "sonner"
@@ -56,7 +55,6 @@ export default function CadastrarProcessoPage() {
   const { user } = useAuthStore()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
-  const [newTag, setNewTag] = useState("")
   
   // Estado inicial do formulário
   const [formData, setFormData] = useState<ProcessFormData>({
@@ -83,25 +81,6 @@ export default function CadastrarProcessoPage() {
     clients: [{ name: "", qualification: "" }],
     involved: [],
   })
-
-  // Função para adicionar uma nova tag
-  const addTag = () => {
-    if (newTag.trim() && !formData.tags.includes(newTag.trim())) {
-      setFormData({
-        ...formData,
-        tags: [...formData.tags, newTag.trim()],
-      })
-      setNewTag("")
-    }
-  }
-
-  // Função para remover uma tag
-  const removeTag = (tag: string) => {
-    setFormData({
-      ...formData,
-      tags: formData.tags.filter((t) => t !== tag),
-    })
-  }
 
   // Função para adicionar um novo cliente
   const addClient = () => {
