@@ -47,6 +47,20 @@ export default function ProcessoDetalhesPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState("")
 
+  const reus = () => {
+    if (processo?.involved) {
+      return processo.involved.filter(p => p.qualification === 'Réu')
+    }
+    return []
+  }
+
+  const authors = () => {
+    if (processo?.involved) {
+      return processo.involved.filter(p => p.qualification === 'Autor')
+    }
+    return []
+  }
+
   const formatCurrency = (value: number) => {
     return value?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) || "Não informado"
   }
@@ -231,9 +245,9 @@ export default function ProcessoDetalhesPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <h3 className="text-lg font-semibold mb-3">Autores</h3>
-                  {processo.involved && processo.involved.filter(p => p.qualification === 'Autor').length > 0 ? (
+                  {authors().length > 0 ? (
                     <ul className="space-y-2">
-                      {processo.involved
+                      {authors()
                         .filter(p => p.qualification === 'Autor')
                         .map((autor, index) => (
                           <li key={index} className="text-gray-900 dark:text-white">{autor.name}</li>
@@ -246,9 +260,9 @@ export default function ProcessoDetalhesPage() {
               
               <div>
                 <h3 className="text-lg font-semibold mb-3">Réus</h3>
-                {processo.involved && processo.involved.filter(p => p.qualification === 'Réu').length > 0 ? (
+                {reus().length > 0 ? (
                   <ul className="space-y-2">
-                    {processo.involved
+                    {reus()
                       .filter(p => p.qualification === 'Réu')
                       .map((reu, index) => (
                         <li key={index} className="text-gray-900 dark:text-white">{reu.name}</li>
