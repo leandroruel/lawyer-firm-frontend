@@ -7,37 +7,36 @@ import { Badge } from "@/components/Badge"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { RiArrowLeftLine } from "@remixicon/react"
 
-// Tipo para o processo com mapeamento para os campos do backend
 type Processo = {
   _id: string
-  folder: string // pasta
-  title: string // título
-  processNumber: string // número do processo
+  folder: string 
+  title: string 
+  processNumber: string 
   clients?:  Array<{
     name: string
     qualification: string
     id?: string
   }>
-  status?: string // status (pode não existir no backend)
-  responsible: string // responsável
-  action?: string // ação (pode não existir no backend)
+  status?: string 
+  responsible: string 
+  action?: string 
   court?:  {
     forum: string
     courtSection: string
     number: number
   }
-  courtLink?: string // link no tribunal (pode não existir no backend)
+  courtLink?: string 
   caseValue?: number 
   convictionValue?: number 
-  distributedAt?: string // distribuído em (pode não existir no backend)
-  createdAt?: string // criado em (pode não existir no backend)
+  distributionDate?: string 
+  createdAt?: string 
   involved: Array<{
     name: string
     qualification: string
     id?: string
   }>
-  tags: string[] // etiquetas
-  instance: string // instância
+  tags: string[] 
+  instance: string 
 }
 
 export default function ProcessoDetalhesPage() {
@@ -65,7 +64,8 @@ export default function ProcessoDetalhesPage() {
     return value?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) || "Não informado"
   }
 
-  const formatDate = (date: string) => {
+  const formatDate = (date: string | undefined) => {
+   
     return date ? new Date(date).toLocaleDateString('pt-BR') : "Não informado"
   }
 
@@ -82,24 +82,9 @@ export default function ProcessoDetalhesPage() {
         }
         
         const data = await response.json()
-        console.log('data', data)
 
-        if (data) {
-          setProcesso({
-            ...data,
-            client: data.client || "Não informado",
-            status: data.status || "Não informado",
-            action: data.action || "Não informado",
-            court: data.court || "Não informado",
-            courtLink: data.courtLink || "#",
-            causeValue: data.causeValue || "Não informado",
-            condemnationValue: data.condemnationValue || "Não informado",
-            distributedAt: data.distributedAt || "Não informado",
-            createdAt: data.createdAt || "Não informado",
-            authors: data.authors || [],
-            involved: data.involved || []
-          })
-        }
+        if (data) setProcesso(data)
+        
       } catch (err) {
         console.error("Erro ao carregar dados:", err)
         setError('Erro ao carregar dados do processo')
@@ -231,7 +216,7 @@ export default function ProcessoDetalhesPage() {
               
               <div>
                 <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Distribuído em</p>
-                <p className="text-gray-900 dark:text-white">{formatDate(processo.distributedAt || "")}</p>
+                <p className="text-gray-900 dark:text-white">{formatDate(processo.distributionDate)}</p>
               </div>
               
               <div>
