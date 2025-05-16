@@ -3,6 +3,7 @@ import "../globals.css"
 import { siteConfig } from "../siteConfig"
 
 import { Sidebar } from "@/components/ui/navigation/Sidebar"
+import { EmailVerificationAlert } from "@/components/ui/EmailVerificationAlert"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://yoururl.com"),
@@ -40,6 +41,7 @@ export default function DashboardLayout({
       <div className="flex-1">
         <main className="relative lg:pl-72">
           <div className="px-4 py-8 sm:px-6 lg:px-8">
+            <EmailVerificationAlert />
             {children}
           </div>
         </main>

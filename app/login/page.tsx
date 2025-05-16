@@ -32,12 +32,11 @@ export default function Login() {
         body: JSON.stringify({ email, password }),
       })
 
-      if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.message || "Credenciais inválidas")
-      }
-
       const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.message || "Credenciais inválidas")
+      }
       
       if (data.token) {
         router.push("/dashboard")

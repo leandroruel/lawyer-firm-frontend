@@ -10,6 +10,7 @@ import { ColumnDef } from "@tanstack/react-table"
 import { RiMoreFill, RiPencilLine, RiDeleteBinLine } from "@remixicon/react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/Dropdown"
 import { useRouter } from "next/navigation"
+import { useAuthStore } from "@/stores/useAuthStore"
 
 const processFilters: FilterConfig[] = [
   {
@@ -115,7 +116,7 @@ export default function ProcessosPage() {
   const [processes, setProcesses] = useState<Process[]>([])
   const [error, setError] = useState("")
   const router = useRouter()
-
+  const { user } = useAuthStore()
   useEffect(() => {
     const fetchProcesses = async () => {
       try {
@@ -148,12 +149,14 @@ export default function ProcessosPage() {
         <h1 className="text-lg font-semibold text-gray-900 dark:text-gray-50">
           Processos
         </h1>
-        <Button 
-          variant="primary" 
-          onClick={() => router.push('/dashboard/processos/cadastrar')}
+        {user?.emailVerified && (
+          <Button 
+            variant="primary" 
+            onClick={() => router.push('/dashboard/processos/cadastrar')}
         >
-          Cadastrar Novo Processo
-        </Button>
+            Cadastrar Novo Processo
+          </Button>
+        )}
       </div>
       <DataTable 
         data={processes} 
