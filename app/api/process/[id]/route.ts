@@ -47,7 +47,7 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const token = request.cookies.get('token')?.value
@@ -59,7 +59,7 @@ export async function PUT(
       )
     }
 
-    const { id } = params
+    const { id } = await params
     const data = await request.json()
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/process/${id}`, {
@@ -92,7 +92,7 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const token = request.cookies.get('token')?.value
@@ -104,7 +104,7 @@ export async function DELETE(
       )
     }
 
-    const { id } = params
+    const { id } = await params
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/process/${id}`, {
       method: 'DELETE',
