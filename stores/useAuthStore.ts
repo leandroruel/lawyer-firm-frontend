@@ -6,6 +6,7 @@ interface User {
   email: string
   tenantId: string
   emailVerified: boolean
+  image?: string
 }
 
 interface AuthStore {

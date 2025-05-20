@@ -10,6 +10,11 @@ import { useUser } from "@/hooks/useUser"
 export const UserProfileDesktop = () => {
   const { user, isLoading } = useUser()
 
+  const userInitials = user?.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)
+  const userImage = user?.image ? (
+    <img src={user.image} alt={user.name} className="size-full object-cover rounded-full" />
+  ) : userInitials
+
   if (isLoading) {
     return <div>Carregando...</div>
   }
@@ -29,7 +34,7 @@ export const UserProfileDesktop = () => {
             className="flex size-8 shrink-0 items-center justify-center rounded-full border border-gray-300 bg-white text-xs text-gray-700 dark:border-gray-800 dark:bg-gray-950 dark:text-gray-300"
             aria-hidden="true"
           >
-            {user?.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)}
+            {userImage}
           </span>
           <span>{user?.name}</span>
         </span>
