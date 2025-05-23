@@ -3,10 +3,13 @@ import { create } from 'zustand'
 interface User {
   id: string
   name: string
+  lastName: string
+  role: string
   email: string
   tenantId: string
   emailVerified: boolean
   image?: string
+  birthDate?: string
 }
 
 interface AuthStore {

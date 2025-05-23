@@ -46,7 +46,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={inter.variable} suppressHydrationWarning>
       <body suppressHydrationWarning>
-        <ReactScan />
+        {/* <ReactScan /> */}
         <LoadingBar />
         <ThemeProvider 
           attribute="class" 
